@@ -7,9 +7,9 @@ const preview: Preview = {
       values: [
         {
           name: "light",
-          value: "#E6F3FE"
-        }
-      ]
+          value: "#E6F3FE",
+        },
+      ],
     },
     controls: {
       matchers: {

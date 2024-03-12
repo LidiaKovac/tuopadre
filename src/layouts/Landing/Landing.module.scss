@@ -1,9 +1,7 @@
 @import "/src/styles/utils";
 @import "/src/styles/colors";
 .landing {
-  background-image: url("/src/assets/bg.png");
 
-  background-size: cover;
   height: 100vh;
   padding: 5% 10%;
   &__content {

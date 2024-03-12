@@ -1,0 +1,52 @@
+@import "/src/styles/colors";
+@import "/src/styles/utils";
+
+@mixin btn($col) {
+  color: $col;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 10px 20px;
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 10px 3px transparentize(map-get($colors, "light"), 0.5);
+    transform: scale(1.02);
+  }
+  &:active {
+    $offset: 1px;
+    transform: translate($offset, $offset);
+  }
+}
+
+.btn {
+  @extend .glass;
+  @include btn(map-get($colors, "primary"));
+
+  &[disabled] {
+    color: transparentize(map-get($colors, "primary"), 0.5);
+    // border: 1px solid map-get($colors, "primary");
+    cursor: not-allowed;
+    &:hover {
+      box-shadow: none;
+      transform: none;
+    }
+    &:active {
+      transform: none;
+    }
+  }
+  @each $stat, $color in $status {
+    &--#{$stat} {
+      background-color: transparentize($color, 0.8);
+
+      @if (lightness($color) < 50) {
+        color: map-get($colors, "light");
+      } @else {
+        color: darken(map-get($colors, "primary"), 30);
+      }
+    }
+  }
+  @container ( max-width: 480px ) {
+    font-size: 15px
+  }
+}

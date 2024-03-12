@@ -1,0 +1,16 @@
+@import "./styles/colors";
+@import "./styles/headings";
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: map-get($colors, "dark");
+  body {
+    margin: 0;
+    img {
+      max-width: 100%;
+      vertical-align: middle;
+    }
+  }
+}
+* {
+  box-sizing: border-box;
+}

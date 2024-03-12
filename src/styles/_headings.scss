@@ -1,0 +1,10 @@
+@import "/src/styles/colors";
+h1 {
+  color: map-get($colors, "primary");
+  -webkit-text-stroke: 1px white;
+  text-shadow: 3px 3px map-get($colors, "secondary");
+  font-size: clamp(90px, 150px, 200px);
+//   width: 50%;
+  line-height: 80%;
+  margin: 0;
+}

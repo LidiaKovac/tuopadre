@@ -1,0 +1,45 @@
+@import "/src/styles/colors";
+.testimonials {
+  background-color: map-get($colors, "secondary");
+  border-radius: 40px;
+  padding: 10px;
+  color: map-get($colors, "primary");
+  font-weight: bold;
+  img {
+    width: 35px;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    &:not(:first-of-type) {
+      margin-left: -20px;
+    }
+    &:last-of-type {
+      margin-right: 5px;
+    }
+  }
+  .text--mobile {
+    display: none;
+  }
+  @container ( max-width: 480px ) {
+    font-size: 15px;
+    img {
+      &:nth-of-type(2) {
+        display: none;
+      }
+    }
+  }
+  @container ( max-width: 320px ) {
+    width: fit-content;
+    align-self: center;
+    img {
+      &:nth-of-type(2) {
+        display: initial;
+      }
+    }
+    .text--big {
+      display: none;
+    }
+    .text--mobile {
+      display: inline
+    }
+  }
+}

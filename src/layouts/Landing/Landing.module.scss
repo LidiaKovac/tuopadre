@@ -1,0 +1,65 @@
+@import "/src/styles/utils";
+@import "/src/styles/colors";
+.landing {
+  background-image: url("/src/assets/bg.png");
+
+  background-size: cover;
+  height: 100vh;
+  padding: 5% 10%;
+  &__content {
+    height: 100%;
+    @extend .glass;
+    // padding-inline: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    h1 {
+      max-width: 50%;
+    }
+    section {
+      max-width: 30%;
+      min-width: 380px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      p {
+        font-size: 20px;
+        font-weight: bold;
+        color: darken(map-get($colors, "primary"), 35);
+      }
+      button {
+        width: 100%;
+      }
+    }
+    container-type: inline-size;
+    @container ( max-width: 870px ) {
+      h1 {
+        font-size: clamp(90px, 120px, 150px);
+        text-align: center;
+      }
+    }
+    @container ( max-width: 700px ) {
+      h1 {
+        font-size: clamp(80px, 90px, 120px);
+        max-width: 70%;
+      }
+    }
+    @container ( max-width: 480px ) {
+      h1 {
+        max-width: 80%;
+        font-size: clamp(70px, 80px, 100px);
+      }
+      section {
+        min-width: unset;
+        max-width: unset;
+        p {
+          font-size: 15px;
+        }
+        
+      }
+    }
+  }
+}

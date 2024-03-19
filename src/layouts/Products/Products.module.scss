@@ -1,6 +1,13 @@
-.products__wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-evenly;
+.products {
+  padding-inline: 5%;
+  & > h2 {
+    margin-block: 20px;
+  }
+  &__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }

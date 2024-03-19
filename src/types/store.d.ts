@@ -10,6 +10,7 @@ interface Product {
 
 interface ProductResponse {
   data: Product[];
+  query: string | null
   prev: string | null;
   next: string | null;
   count: number

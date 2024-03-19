@@ -1,20 +1,24 @@
 @import "/src/styles/colors";
 @import "/src/styles/utils";
 .card {
-  width: calc(20% - 20px * 2);
+  flex: 1 1 calc(20% - 20px * 2);
+  // width: calc(20% - 20px * 2);
   max-width: 280px;
   min-width: 250px;
+  height: 100%;
   @extend .glass;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
   &__header {
     position: relative;
     height: 50%;
+
     img:not(.shop__icon) {
       width: 100%;
       height: 100%;
+      aspect-ratio: 1/1;
       object-fit: cover;
     }
     img.shop__icon,
@@ -40,7 +44,15 @@
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
+    h3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
 
+      height: calc(1.17em * 2.5);
+      line-height: 1.5;
+    }
     h4 {
       font-weight: normal;
       &::first-letter {

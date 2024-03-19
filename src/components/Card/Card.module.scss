@@ -29,11 +29,12 @@
       padding: 5px 10px;
       @extend .glass;
       border-radius: 0px;
-      
+
       img.shop__icon,
       svg {
         &:is(img) {
           width: 60px;
+          height: 40px;
           object-fit: contain;
         }
         &:is(svg) {

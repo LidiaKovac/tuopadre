@@ -1,6 +1,9 @@
+@import "/src/styles/utils";
+
 .navbar {
     height: 100px;
-    backdrop-filter: blur(40px);
+    @extend .glass;
+    border-radius: 0px;
     margin-bottom: 20px;
     padding-inline: 5%;
 

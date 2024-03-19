@@ -1,0 +1,29 @@
+@import "/src/styles/colors";
+.input {
+  background-color: lighten(map-get($colors, "accent-light"), 10%);
+  border-radius: 100px;
+  min-width: 400px;
+  position: relative;
+  input {
+    border: none;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: inherit;
+    width: 100%;
+    &:focus,
+    &:active {
+      // outline: none;
+      outline: 2px solid map-get($colors, "secondary");
+    }
+  }
+  svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    $size: 25px;
+    width: $size;
+    height: $size;
+  }
+}

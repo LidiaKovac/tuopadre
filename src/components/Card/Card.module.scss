@@ -14,27 +14,32 @@
   &__header {
     position: relative;
     height: 50%;
-
-    img:not(.shop__icon) {
-      width: 100%;
-      height: 100%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-    }
-    img.shop__icon,
-    svg {
+    &-overlay {
       position: absolute;
-      bottom: 20px;
-
-      &:is(img) {
-        left: 20px;
-        width: 50px;
+      bottom: 0px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      @extend .glass;
+      border-radius: 0px;
+      img:not(.shop__icon) {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
       }
-      &:is(svg) {
-        width: 30px;
-        height: 30px;
-        right: 20px;
-        fill: map-get($colors, "accent");
+      img.shop__icon,
+      svg {
+        &:is(img) {
+          width: 60px;
+          object-fit: contain;
+        }
+        &:is(svg) {
+          width: 30px;
+          height: 30px;
+          fill: map-get($colors, "accent");
+        }
       }
     }
   }
@@ -55,6 +60,8 @@
     }
     h4 {
       font-weight: normal;
+      height: calc(1em * 2.5);
+      line-height: 1.5;
       &::first-letter {
         text-transform: capitalize;
       }

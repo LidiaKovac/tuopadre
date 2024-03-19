@@ -23,7 +23,6 @@ const initialState: ProductsState = {
 export const getProducts = createAsyncThunk(
   "products/get",
   (query: string, { rejectWithValue }): Promise<ProductResponse> => {
-    console.log(query)
     // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (res, rej) => {
       try {

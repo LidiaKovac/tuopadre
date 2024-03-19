@@ -13,8 +13,11 @@ export const Card: FC<CardProps> = ({ product }) => {
           src={product.img || "https://placehold.it/300"}
           alt={product.prodName}
         />
-        <Shop name={product.store} />
-        {product.needsCard && <FaIdCard />}
+        <div className={styles["card__header-overlay"]}>
+
+          <Shop name={product.store} />
+          {product.needsCard && <FaIdCard />}
+        </div>
       </div>
       <div className={styles["card__body"]}>
         <h3>{product.prodName}</h3>

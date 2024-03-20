@@ -4,6 +4,7 @@ import styles from "./Sidebar.module.scss"
 import { getProducts, setFilter } from "../../redux/slices/products"
 import { useAppDispatch, useAppSelector } from "../../redux/store"
 import { Button } from "../Button/Button"
+import { Shop } from "../Card/Shop/Shop"
 export const Sidebar = () => {
     const dispatch = useAppDispatch()
     const filters = useAppSelector((state) => state.products.filter)
@@ -28,7 +29,7 @@ export const Sidebar = () => {
         }
     }
     const fetchProducts = () => {
-        dispatch(getProducts(null))
+        dispatch(getProducts({query: null, page: 1}))
     }
     const shops = [
         "Basko",
@@ -52,13 +53,15 @@ export const Sidebar = () => {
             <hr />
             {shops.map((shop) => {
                 return (
-                    <Checkbox
-                        labelContent={shop}
-                        name="store"
-                        id={shop}
-                        onChange={selectStore}
-                        checked={(filters["store"] as string).includes(shop)}
-                    />
+                    <>
+                        <Checkbox
+                            labelContent={shop}
+                            name="store"
+                            id={shop}
+                            onChange={selectStore}
+                            checked={(filters["store"] as string).includes(shop)}
+                        />
+                        <Shop name="shop" /></>
                 )
             })}
             <hr />

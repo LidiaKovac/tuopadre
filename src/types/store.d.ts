@@ -16,7 +16,7 @@ interface ProductResponse {
   count: number
 }
 
-interface JSONQuery extends Record<string, string | boolean> {
+interface JSONQuery extends Record<string, string | boolean | null> {
   
 }
 

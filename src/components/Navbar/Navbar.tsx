@@ -24,15 +24,15 @@ export const Navbar = () => {
         clearTimeout(timeout)
 
         if (e.nativeEvent.type === "click" && e.type === "click") {
-            dispatch(getProducts({ prodName: query! }))
+            dispatch(getProducts({ query: { prodName: query! }, page: 1 }))
         } else if (e.nativeEvent.type === "keyup" && e.type === "keyup") {
             const event = e as KeyboardEvent
             if (event.key === "Enter") {
-                dispatch(getProducts({ prodName: query! }))
+                dispatch(getProducts({ query: { prodName: query! }, page: 1 }))
             } else {
                 dispatch(setLoading(true))
                 const t = setTimeout(() => {
-                    dispatch(getProducts({ prodName: query! }))
+                    dispatch(getProducts({ query: { prodName: query! }, page: 1 }))
                 }, 500)
                 refreshTimeout(t)
             }

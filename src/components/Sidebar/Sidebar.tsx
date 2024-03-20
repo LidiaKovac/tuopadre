@@ -53,7 +53,7 @@ export const Sidebar = () => {
             <hr />
             {shops.map((shop) => {
                 return (
-                    <>
+                    <div className={styles["sidebar__item"]}>
                         <Checkbox
                             labelContent={shop}
                             name="store"
@@ -61,7 +61,8 @@ export const Sidebar = () => {
                             onChange={selectStore}
                             checked={(filters["store"] as string).includes(shop)}
                         />
-                        <Shop name="shop" /></>
+                        <Shop name={shop.toLowerCase().replace(" ", "-")} />
+                    </div>
                 )
             })}
             <hr />

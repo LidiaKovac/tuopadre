@@ -6,6 +6,7 @@ import carrefour_express from "../../../assets/shops/carrefour-express.png";
 import carrefour_market from "../../../assets/shops/carrefour-market.png";
 import esselunga from "../../../assets/shops/esselunga.png";
 import penny from "../../../assets/shops/penny.png";
+import basko from "../../../assets/shops/basko.png";
 import styles from "../Card.module.scss"
 interface ShopProps {
   name: string;
@@ -26,6 +27,8 @@ export const Shop: FC<ShopProps> = ({ name }) => {
       return <img className={styles["shop__icon"]} src={esselunga} alt="esselunga logo" />;
     case "penny":
       return <img className={styles["shop__icon"]} src={penny} alt="penny logo" />;
+    case "basko":
+      return <img className={styles["shop__icon"]} src={basko} alt="basko logo" />;
     default:
       break;
   }

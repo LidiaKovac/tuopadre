@@ -1,12 +1,17 @@
 @import "/src/styles/utils";
 
 .navbar {
-    height: 100px;
-    @extend .glass;
-    border-radius: 0px;
-    padding-inline: 5%;
+  height: 100px;
+  @extend .glass;
+  border-radius: 0px;
+  padding-inline: 5%;
+  font-size: 18px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__logo {
+    // font-size: 2rem;
+    font-weight: bold;
+  }
 }

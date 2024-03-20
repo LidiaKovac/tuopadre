@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import httpClient from "../../configs/axios"
+import { RootState } from "../store"
 interface ProductsState extends ProductResponse {
   data: Product[]
-  query?: string | null
+  query: string | null
+  filter: JSONQuery
   loading: boolean
   error: string | null
   prev: string | null
@@ -13,6 +15,10 @@ interface ProductsState extends ProductResponse {
 const initialState: ProductsState = {
   data: [],
   query: null,
+  filter: {
+    price: "true",
+    store: "Basko,Carrefour Express,Carrefour Market,Coop,Esselunga,Lidl,Pam,Penny"
+  },
   prev: null,
   next: null,
   loading: true,
@@ -22,16 +28,40 @@ const initialState: ProductsState = {
 
 export const getProducts = createAsyncThunk(
   "products/get",
-  (query: JSONQuery | null, { rejectWithValue }): Promise<ProductResponse> => {
+  (query: JSONQuery | null, { getState, rejectWithValue }): Promise<ProductResponse> => {
     // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (res, rej) => {
       try {
-        console.log(query)
+        const state = getState() as RootState
+
         let qp = null
+        const stringQ = {} as Record<string, string>
         if (query) {
-          qp = new URLSearchParams(query)
+          for (const key in query) {
+            if (Object.prototype.hasOwnProperty.call(query, key)) {
+              const val = query[key];
+              stringQ[key] = val.toString()
+            }
+          }
         }
-        const resp = await httpClient.get(`/products?${query ? `${qp}` : ""}`)
+
+        for (const key in state.products.filter) {
+          if (Object.prototype.hasOwnProperty.call(state.products.filter, key)) {
+            const val = state.products.filter[key];
+            stringQ[key] = val.toString()
+          }
+        }
+
+        console.log(stringQ)
+
+        qp = new URLSearchParams(stringQ)
+        for (const q of qp.entries()) {
+          const [key, value] = q
+          if (value.includes("true") || value.includes("false")) {
+            qp.set(key, "")
+          }
+        }
+        const resp = await httpClient.get(`/products?${qp}`)
         if (resp) res({ ...resp.data, query: query || null })
       } catch (error) {
         rej(rejectWithValue("The error was caught by the axios interceptor!"))
@@ -45,9 +75,17 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     setQuery: (state, action) => {
-        state.query = action.payload
-      
+      state.query = action.payload
     },
+    setLoading: (state, action) => {
+      state.loading = action.payload
+    },
+    setFilter: (state, action) => {
+      state.filter = {
+        ...state.filter,
+        ...action.payload
+      }
+    }
   },
   extraReducers(builder) {
     builder.addCase(getProducts.pending, (state) => {
@@ -69,5 +107,5 @@ export const productSlice = createSlice({
   },
 })
 
-export const {setQuery} = productSlice.actions
+export const { setQuery, setLoading, setFilter } = productSlice.actions
 export default productSlice.reducer

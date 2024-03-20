@@ -7,8 +7,15 @@
     $padding-size: 5%;
     padding-inline: $padding-size;
     padding-top: calc($padding-size / 2);
+    position: relative;
     & > h2 {
       margin-block: 20px;
+    }
+    > svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
     .products__wrap {
       width: 100%;

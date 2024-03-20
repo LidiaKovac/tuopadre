@@ -6,10 +6,12 @@
   position: relative;
   input {
     border: none;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: transparent;
     border-radius: inherit;
     width: 100%;
+    font-size: 18px;
+
     &:focus,
     &:active {
       // outline: none;

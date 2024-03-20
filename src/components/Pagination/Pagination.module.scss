@@ -4,24 +4,32 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  width: 100%;
+  width: 60%;
   padding: 20px;
   &__button {
     font-size: 18px;
 
     cursor: pointer;
-    flex: 0 0 50px;
+    &:not(:is(:first-of-type, :last-of-type)) {
+      flex: 0 0 50px;
+    }
+    &:is(:first-of-type, :last-of-type) {
+      flex: 1 0 100px;
+    }
     @extend .glass;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     padding: 5px;
     box-shadow: 2px 2px 0px 0px map-get($colors, "primary");
     &:hover {
-        box-shadow: 0 0 10px 3px transparentize(map-get($colors, "light"), 0.5);
-        transform: scale(1.02);
-      }
-      &:active {
-        $offset: 1px;
-        transform: translate($offset, $offset);
-      }
-     
-}
+      box-shadow: 0 0 10px 3px transparentize(map-get($colors, "light"), 0.5);
+      transform: scale(1.02);
+    }
+    &:active {
+      $offset: 1px;
+      transform: translate($offset, $offset);
+    }
+  }
 }

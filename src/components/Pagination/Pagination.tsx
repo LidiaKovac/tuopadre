@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import styles from "./Pagination.module.scss";
+import { IoPlayBackOutline, IoPlayForwardOutline } from "react-icons/io5";
 import { getProducts, setPage } from "../../redux/slices/products";
 export const Pagination = () => {
     const { count, page } = useAppSelector((state) => state.products);
@@ -17,6 +18,12 @@ export const Pagination = () => {
     }, []);
     return (
         <div className={styles["pagination"]}>
+            <button className={styles["pagination__button"]} onClick={() => {
+                            dispatch(setPage(1))
+                            fetchProducts();
+                        }}>
+                <IoPlayBackOutline /> Torna all'inizio
+            </button>
             {pages.slice(
                 (page === 1) ? (page - 1) : (page <= 3) ? (page - 2) : (page - 3),
                 (page === 1) ? (page + 4) : (page <= 3) ? (page + 3) : (page + 2))
@@ -33,6 +40,12 @@ export const Pagination = () => {
                         </span> : <strong>{p + 1}</strong>}
                     </button>
                 ))}
+            <button className={styles["pagination__button"]} onClick={() => {
+                            dispatch(setPage(Math.ceil(count / 20)))
+                            fetchProducts();
+                        }}>
+                Vai alla fine <IoPlayForwardOutline />
+            </button>
         </div>
     );
 };

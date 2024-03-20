@@ -29,7 +29,7 @@ export const Sidebar = () => {
         }
     }
     const fetchProducts = () => {
-        dispatch(getProducts({query: null, page: 1}))
+        dispatch(getProducts(null))
     }
     const shops = [
         "Basko",

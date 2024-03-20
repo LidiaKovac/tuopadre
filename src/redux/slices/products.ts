@@ -4,6 +4,7 @@ import { RootState } from "../store";
 interface ProductsState extends ProductResponse {
   data: Product[];
   query: string | null;
+  page: number
   filter: JSONQuery;
   loading: boolean;
   error: string | null;
@@ -24,12 +25,13 @@ const initialState: ProductsState = {
   loading: true,
   error: null,
   count: 0,
+  page: 1
 };
 
 export const getProducts = createAsyncThunk(
   "products/get",
   (
-    { query, page }: { query: JSONQuery | null; page: number },
+    query: JSONQuery | null,
     { getState, rejectWithValue },
   ): Promise<ProductResponse> => {
     // eslint-disable-next-line no-async-promise-executor
@@ -67,7 +69,7 @@ export const getProducts = createAsyncThunk(
             qp.set(key, "");
           }
         }
-        const resp = await httpClient.get(`/products?${qp}&page=${page}`);
+        const resp = await httpClient.get(`/products?${qp}&page=${state.products.page}`);
         if (resp) res({ ...resp.data, query: query || null });
       } catch (error) {
         console.log(error);
@@ -93,6 +95,9 @@ export const productSlice = createSlice({
         ...action.payload,
       };
     },
+    setPage: (state,action) => {
+      state.page = action.payload
+    }
   },
   extraReducers(builder) {
     builder.addCase(getProducts.pending, (state) => {
@@ -114,5 +119,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const { setQuery, setLoading, setFilter } = productSlice.actions;
+export const { setQuery, setLoading, setFilter, setPage } = productSlice.actions;
 export default productSlice.reducer;

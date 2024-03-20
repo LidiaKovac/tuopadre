@@ -6,6 +6,9 @@
   border-top: none;
   border-radius: 0px;
   padding: 30px;
+  h3, h2 {
+    margin-block: 20px;
+  }
   &__item {
     margin-bottom: 5px;
     display: flex;

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import httpClient from "../../configs/axios";
 import { RootState } from "../store";
+import { JSONToQuery } from "../../utils/query.utils";
 interface ProductsState extends ProductResponse {
   data: Product[];
   query: string | null;
@@ -19,6 +20,7 @@ const initialState: ProductsState = {
   filter: {
     price: "true",
     store: "Basko,Carrefour Express,Carrefour Market,Coop,Esselunga,Lidl,Pam,Penny",
+    order: "prodName",
   },
   prev: null,
   next: null,
@@ -36,37 +38,10 @@ export const getProducts = createAsyncThunk(
       try {
         const state = getState() as RootState;
         const query = state.products.query;
-        let qp = null;
-        const stringQ = {} as Record<string, string>;
-        console.log(query);
-        // if (query) {
-        //   for (const key in query) {
-        //     if (Object.prototype.hasOwnProperty.call(query, key)) {
-        //       const val = query[key];
-        //       if (val) {
-        //         stringQ[key] = val.toString();
-        //       }
-        //     }
-        //   }
-        // }
-
-        for (const key in state.products.filter) {
-          if (Object.prototype.hasOwnProperty.call(state.products.filter, key)) {
-            const val = state.products.filter[key];
-            if (val) {
-              stringQ[key] = val.toString();
-            }
-          }
-        }
-
-        qp = new URLSearchParams(stringQ);
-        for (const q of qp.entries()) {
-          const [key, value] = q;
-          if (value.includes("true") || value.includes("false")) {
-            qp.set(key, "");
-          }
-        }
-        const resp = await httpClient.get(`/products?${qp}&page=${state.products.page}${query ? `&prodName=${query}`: ""}`);
+        const qp = JSONToQuery(state.products.filter);
+        const resp = await httpClient.get(
+          `/products?${qp.toString()}&page=${state.products.page}${query ? `&prodName=${query}` : ""}`,
+        );
         if (resp) res({ ...resp.data, query: query || null });
       } catch (error) {
         console.log(error);

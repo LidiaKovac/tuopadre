@@ -18,21 +18,26 @@ export const Products = () => {
       <main>
         {loading && <Loader />}
 
-        {!loading && <>
-          {!query && <h2>Tutti i prodotti: </h2>}
-          {query && <h2>Risultati della ricerca: {query} ({count}) </h2>}
-          {products.length > 0 && <Pagination />}
-          <div className={styles["products__wrap"]}>
-            {products.map((p) => (
-              <Card product={p} />
-            ))}
-          </div>
-          {products.length > 0 && <Pagination />}
+        {!loading && (
+          <>
+            {!query && <h2>Tutti i prodotti: </h2>}
+            {query && (
+              <h2>
+                Risultati della ricerca: {query} ({count}){" "}
+              </h2>
+            )}
+            {products.length > 0 && <Pagination />}
+            <div className={styles["products__wrap"]}>
+              {products.map((p) => (
+                <Card product={p} />
+              ))}
+            </div>
+            {products.length > 0 && <Pagination />}
 
-          {products.length == 0 && <h2> Ops, non ci sono risultati. Ecco un toast per consolarti: 🥪 </h2>}
-        </>}
+            {products.length == 0 && <h2> Ops, non ci sono risultati. Ecco un toast per consolarti: 🥪 </h2>}
+          </>
+        )}
       </main>
-
     </div>
   );
 };

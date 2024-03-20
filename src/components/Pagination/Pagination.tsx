@@ -8,8 +8,10 @@ export const Pagination = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [pages, setPages] = useState<any[]>([]);
     const dispatch = useAppDispatch();
-    const fetchProducts = () => {
-        dispatch(getProducts({ prodName: null }));
+    const fetchProducts = (page: number) => {
+        dispatch(setPage(page));
+
+        dispatch(getProducts());
     };
     useEffect(() => {
         for (let i = 0; i < count / 20; i++) {
@@ -18,32 +20,35 @@ export const Pagination = () => {
     }, []);
     return (
         <div className={styles["pagination"]}>
-            <button className={styles["pagination__button"]} onClick={() => {
-                            dispatch(setPage(1))
-                            fetchProducts();
-                        }}>
+            <button
+                className={styles["pagination__button"]}
+                onClick={() => {
+                    fetchProducts(1);
+                }}
+            >
                 <IoPlayBackOutline /> Torna all'inizio
             </button>
-            {pages.slice(
-                (page === 1) ? (page - 1) : (page <= 3) ? (page - 2) : (page - 3),
-                (page === 1) ? (page + 4) : (page <= 3) ? (page + 3) : (page + 2))
+            {pages
+                .slice(
+                    page === 1 ? page - 1 : page <= 3 ? page - 2 : page - 3,
+                    page === 1 ? page + 4 : page <= 3 ? page + 3 : page + 2,
+                )
                 .map((p) => (
                     <button
                         className={styles["pagination__button"]}
                         onClick={() => {
-                            dispatch(setPage(p + 1))
-                            fetchProducts();
+                            fetchProducts(p + 1);
                         }}
                     >
-                        {p + 1 !== page ? <span>
-                            {p + 1}
-                        </span> : <strong>{p + 1}</strong>}
+                        {p + 1 !== page ? <span>{p + 1}</span> : <strong>{p + 1}</strong>}
                     </button>
                 ))}
-            <button className={styles["pagination__button"]} onClick={() => {
-                            dispatch(setPage(Math.ceil(count / 20)))
-                            fetchProducts();
-                        }}>
+            <button
+                className={styles["pagination__button"]}
+                onClick={() => {
+                    fetchProducts(Math.ceil(count / 20));
+                }}
+            >
                 Vai alla fine <IoPlayForwardOutline />
             </button>
         </div>

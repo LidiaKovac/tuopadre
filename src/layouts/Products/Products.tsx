@@ -10,7 +10,7 @@ export const Products = () => {
   const dispatch = useAppDispatch();
   const { data: products, query, count, loading } = useAppSelector((state) => state.products);
   useEffect(() => {
-    dispatch(getProducts(null));
+    dispatch(getProducts());
   }, []);
   return (
     <div className={styles["products"]}>

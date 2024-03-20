@@ -4,7 +4,7 @@ import { RootState } from "../store";
 interface ProductsState extends ProductResponse {
   data: Product[];
   query: string | null;
-  page: number
+  page: number;
   filter: JSONQuery;
   loading: boolean;
   error: string | null;
@@ -25,33 +25,30 @@ const initialState: ProductsState = {
   loading: true,
   error: null,
   count: 0,
-  page: 1
+  page: 1,
 };
 
 export const getProducts = createAsyncThunk(
   "products/get",
-  (
-    query: JSONQuery | null,
-    { getState, rejectWithValue },
-  ): Promise<ProductResponse> => {
+  (_, { getState, rejectWithValue }): Promise<ProductResponse> => {
     // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (res, rej) => {
       try {
         const state = getState() as RootState;
-
+        const query = state.products.query;
         let qp = null;
         const stringQ = {} as Record<string, string>;
         console.log(query);
-        if (query) {
-          for (const key in query) {
-            if (Object.prototype.hasOwnProperty.call(query, key)) {
-              const val = query[key];
-              if (val) {
-                stringQ[key] = val.toString();
-              }
-            }
-          }
-        }
+        // if (query) {
+        //   for (const key in query) {
+        //     if (Object.prototype.hasOwnProperty.call(query, key)) {
+        //       const val = query[key];
+        //       if (val) {
+        //         stringQ[key] = val.toString();
+        //       }
+        //     }
+        //   }
+        // }
 
         for (const key in state.products.filter) {
           if (Object.prototype.hasOwnProperty.call(state.products.filter, key)) {
@@ -69,7 +66,7 @@ export const getProducts = createAsyncThunk(
             qp.set(key, "");
           }
         }
-        const resp = await httpClient.get(`/products?${qp}&page=${state.products.page}`);
+        const resp = await httpClient.get(`/products?${qp}&page=${state.products.page}${query ? `&prodName=${query}`: ""}`);
         if (resp) res({ ...resp.data, query: query || null });
       } catch (error) {
         console.log(error);
@@ -95,9 +92,9 @@ export const productSlice = createSlice({
         ...action.payload,
       };
     },
-    setPage: (state,action) => {
-      state.page = action.payload
-    }
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(getProducts.pending, (state) => {

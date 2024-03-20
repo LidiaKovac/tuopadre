@@ -5,7 +5,7 @@ import {
     MouseEvent,
     useState,
 } from "react"
-import { getProducts, setLoading, setQuery } from "../../redux/slices/products"
+import { getProducts, setLoading, setPage, setQuery } from "../../redux/slices/products"
 import { useAppDispatch, useAppSelector } from "../../redux/store"
 import { Button } from "../Button/Button"
 import styles from "./Navbar.module.scss"
@@ -24,15 +24,20 @@ export const Navbar = () => {
         clearTimeout(timeout)
 
         if (e.nativeEvent.type === "click" && e.type === "click") {
-            dispatch(getProducts({ prodName: query! }))
+            dispatch(setPage(1))
+            dispatch(getProducts())
         } else if (e.nativeEvent.type === "keyup" && e.type === "keyup") {
             const event = e as KeyboardEvent
             if (event.key === "Enter") {
-                dispatch(getProducts({ prodName: query! }))
+                dispatch(setPage(1))
+
+                dispatch(getProducts())
             } else {
                 dispatch(setLoading(true))
                 const t = setTimeout(() => {
-                    dispatch(getProducts({ prodName: query! }))
+                    dispatch(setPage(1))
+
+                    dispatch(getProducts())
                 }, 500)
                 refreshTimeout(t)
             }

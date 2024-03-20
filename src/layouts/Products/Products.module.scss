@@ -1,15 +1,22 @@
 .products {
-  $padding-size: 5%;
-  padding-inline: $padding-size;
-  & > h2 {
-    margin-block: 20px;
-  }
-  &__wrap {
+  display: flex;
+  min-height: calc(100vh - 100px);
+
+  main {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    align-items: flex-start;
+    $padding-size: 5%;
+    padding-inline: $padding-size;
+    padding-top: calc($padding-size / 2);
+    & > h2 {
+      margin-block: 20px;
+    }
+    .products__wrap {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
   }
 }

@@ -1,13 +1,13 @@
 import { FC } from "react";
-import coop from "../../../assets/shops/coop.png";
-import pam from "../../../assets/shops/pam.png";
-import lidl from "../../../assets/shops/lidl.png";
-import carrefour_express from "../../../assets/shops/carrefour-express.png";
-import carrefour_market from "../../../assets/shops/carrefour-market.png";
-import esselunga from "../../../assets/shops/esselunga.png";
-import penny from "../../../assets/shops/penny.png";
-import basko from "../../../assets/shops/basko.png";
-import styles from "../Card.module.scss"
+import coop from "../../assets/shops/coop.png";
+import pam from "../../assets/shops/pam.png";
+import lidl from "../../assets/shops/lidl.png";
+import carrefour_express from "../../assets/shops/carrefour-express.png";
+import carrefour_market from "../../assets/shops/carrefour-market.png";
+import esselunga from "../../assets/shops/esselunga.png";
+import penny from "../../assets/shops/penny.png";
+import basko from "../../assets/shops/basko.png";
+import styles from "./Shop.module.scss"
 interface ShopProps {
   name: string;
 }

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./Card.module.scss";
-import { Shop } from "./Shop/Shop";
+import { Shop } from "../Shop/Shop";
 import { FaIdCard, FaPlus } from "react-icons/fa";
 interface CardProps {
   product: Product;

@@ -17,8 +17,8 @@ export const JSONToQuery = (q: JSONQuery) => {
     console.log(key, value);
     if (value.includes("true")) {
       qp.set(key, "!=null");
-    } else if(value.includes("false")) {
-        qp.set(key, "")
+    } else if (value.includes("false")) {
+      qp.set(key, "");
     }
   }
   console.log(qp);

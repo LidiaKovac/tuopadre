@@ -10,6 +10,7 @@ export const Card: FC<CardProps> = ({ product }) => {
     <div className={styles["card"]}>
       <div className={styles["card__header"]}>
         <img
+          className={styles["card__img"]}
           src={product.img || "https://placehold.it/300"}
           alt={product.prodName}
         />

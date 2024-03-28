@@ -14,7 +14,7 @@
   &__header {
     position: relative;
     height: 50%;
-    img:not(.shop__icon) {
+    .card__img {
       width: 100%;
       height: 100%;
       aspect-ratio: 1/1;
@@ -30,13 +30,7 @@
       @extend .glass;
       border-radius: 0px;
 
-      img.shop__icon,
       svg {
-        &:is(img) {
-          width: 60px;
-          height: 40px;
-          object-fit: contain;
-        }
         &:is(svg) {
           width: 30px;
           height: 30px;

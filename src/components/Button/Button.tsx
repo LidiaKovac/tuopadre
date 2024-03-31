@@ -5,11 +5,12 @@ export const Button: FC<ButtonComponent> = ({
   content,
   onClick,
   type,
-  disabled
+  disabled,
+  className
 }) => {
   return (
     <button
-      className={`${styles["btn"]} ${styles[`btn--${status}`]}`}
+      className={`${styles["btn"]} ${styles[`btn--${status}`]}, ${className}`}
       type={type}
       onClick={onClick}
       disabled={disabled}

@@ -5,6 +5,7 @@ import { getProducts, setFilter, setPage } from "../../redux/slices/products";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Button } from "../Button/Button";
 import { Shop } from "../Shop/Shop";
+import { shops } from "../../utils/shops.utils";
 export const Sidebar = () => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.products.filter);
@@ -43,7 +44,6 @@ export const Sidebar = () => {
 
     dispatch(getProducts());
   };
-  const shops = ["Basko", "Carrefour Express", "Carrefour Market", "Coop", "Esselunga", "Lidl", "Pam", "Penny"];
   return (
     <aside className={styles["sidebar"]}>
       <h2>Filtri:</h2>
@@ -54,13 +54,17 @@ export const Sidebar = () => {
         return (
           <div className={styles["sidebar__item"]}>
             <Checkbox
-              labelContent={shop}
+              labelContent={
+                <>
+                  {shop}
+                  <Shop name={shop.toLowerCase().replace(" ", "-")} />
+                </>
+              }
               name="store"
               id={shop}
               onChange={selectStore}
               checked={(filters["store"] as string).includes(shop)}
             />
-            <Shop name={shop.toLowerCase().replace(" ", "-")} />
           </div>
         );
       })}

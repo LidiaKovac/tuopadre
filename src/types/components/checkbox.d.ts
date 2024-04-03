@@ -1,4 +1,6 @@
+
+
 interface CheckboxComponent
     extends React.InputHTMLAttributes<HTMLInputElement> {
-        labelContent: string
+        labelContent: import("react").ReactNode
 }

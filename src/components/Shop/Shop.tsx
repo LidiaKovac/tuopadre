@@ -1,5 +1,6 @@
 import { FC } from "react";
 import coop from "../../assets/shops/coop.png";
+import ipercoop from "../../assets/shops/ipercoop.png";
 import pam from "../../assets/shops/pam.png";
 import lidl from "../../assets/shops/lidl.png";
 import carrefour_express from "../../assets/shops/carrefour-express.png";
@@ -27,9 +28,11 @@ export const Shop: FC<ShopProps> = ({ name }) => {
       return <img className={styles["shop__icon"]} src={esselunga} alt="esselunga logo" />;
     case "penny":
       return <img className={styles["shop__icon"]} src={penny} alt="penny logo" />;
-    case "basko":
-      return <img className={styles["shop__icon"]} src={basko} alt="basko logo" />;
-    default:
+      case "basko":
+        return <img className={styles["shop__icon"]} src={basko} alt="basko logo" />;
+        case "ipercoop":
+          return <img className={styles["shop__icon"]} src={ipercoop} alt="ipercoop logo" />;
+          default:
       break;
   }
 };

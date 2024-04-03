@@ -4,3 +4,12 @@
   border: 1px solid white;
   border-radius: 20px;
 }
+
+.clamp-line-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: calc(1.17em * 2.5);
+      line-height: 1.5;
+}

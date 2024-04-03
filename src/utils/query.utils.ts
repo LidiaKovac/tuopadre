@@ -1,6 +1,5 @@
 export const JSONToQuery = (q: JSONQuery) => {
   const stringQ = {} as Record<string, string>;
-  console.log(q);
 
   for (const key in q) {
     if (Object.prototype.hasOwnProperty.call(q, key)) {

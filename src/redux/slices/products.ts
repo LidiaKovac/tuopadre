@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import httpClient from "../../configs/axios";
 import { RootState } from "../store";
 import { JSONToQuery } from "../../utils/query.utils";
+import { shops } from "../../utils/shops.utils";
 interface ProductsState extends ProductResponse {
   data: Product[];
   query: string | null;
@@ -19,7 +20,7 @@ const initialState: ProductsState = {
   query: null,
   filter: {
     price: "true",
-    store: "Basko,Carrefour Express,Carrefour Market,Coop,Esselunga,Lidl,Pam,Penny",
+    store: shops.join(","),
     order: "prodName",
   },
   prev: null,

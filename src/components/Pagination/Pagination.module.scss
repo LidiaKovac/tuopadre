@@ -15,6 +15,7 @@
       aspect-ratio: 1 / 1;
     }
     &:is(:first-of-type, :last-of-type) {
+      max-width: 200px;
       flex: 1 0 100px;
     }
     @extend .glass;
@@ -36,8 +37,7 @@
   }
 }
 
-
-@container(max-width: 750px) {
+@container (max-width: 750px) {
   .pagination {
     &__button {
       &:is(:first-of-type, :last-of-type) {

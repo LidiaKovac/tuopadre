@@ -1,6 +1,7 @@
 interface Product {
+  _id: string
   img: string;
-  price: string;
+  price: number;
   prodName: string;
   prodQuantity: string;
   store: string;

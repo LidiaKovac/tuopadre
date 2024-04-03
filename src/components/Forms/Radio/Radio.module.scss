@@ -1,5 +1,5 @@
 @import "/src/styles/colors";
-.checkbox {
+.radio {
   width: 100%;
 
   display: flex;
@@ -14,8 +14,12 @@
   -o-user-select: none;
   & > input:checked ~ &__visible {
     background-color: map-get($colors, "accent");
-    svg {
+    &::before {
+      content: "•";
+      color: white;
       opacity: 1;
+      font-size: 30px;
+      // line-height: 15px;
     }
   }
   input {
@@ -25,14 +29,14 @@
   &__visible {
     width: 15px;
     height: 15px;
+    border-radius: 50%;
     aspect-ratio: 1/1;
     outline: 2px solid map-get($colors, "accent");
     position: relative;
-    border-radius: 2px;
-    svg {
+    &::before {
       position: absolute;
-      left: 50%;
-      top: 50%;
+      left: 53%;
+      top: 38%;
       transform: translate(-50%, -50%);
       width: 90%;
       opacity: 0;

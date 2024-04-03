@@ -25,7 +25,7 @@ export const Card: FC<CardProps> = ({ product }) => {
         <h4>{product.prodQuantity}</h4>
       </div>
       <div className={styles["card__footer"]}>
-        <div className={styles["card__price"]}>{product.price}</div>
+        <div className={styles["card__price"]}>{product.price.toFixed(2)}</div>
         <button>
           <FaPlus />
         </button>

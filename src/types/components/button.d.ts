@@ -1,6 +1,8 @@
+import { ReactNode } from "react";
+
 interface ButtonComponent
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  content: string;
+  content: ReactNode;
   status: ButtonStatus;
 }
 

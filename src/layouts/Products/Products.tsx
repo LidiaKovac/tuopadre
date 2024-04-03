@@ -29,7 +29,7 @@ export const Products = () => {
             {products.length > 0 && <Pagination />}
             <div className={styles["products__wrap"]}>
               {products.map((p) => (
-                <Card product={p} />
+                <Card key={p._id} product={p} />
               ))}
             </div>
             {products.length > 0 && <Pagination />}

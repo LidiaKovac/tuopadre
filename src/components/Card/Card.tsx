@@ -21,11 +21,11 @@ export const Card: FC<CardProps> = ({ product }) => {
         </div>
       </div>
       <div className={styles["card__body"]}>
-        <h3>{product.prodName}</h3>
+        <h3>{product.prodName.toLowerCase()}</h3>
         <h4>{product.prodQuantity}</h4>
       </div>
       <div className={styles["card__footer"]}>
-        <div className={styles["card__price"]}>{product.price.toFixed(2)}</div>
+        {product.price && <div className={styles["card__price"]}>{product.price.toFixed(2)}</div>}
         <button>
           <FaPlus />
         </button>

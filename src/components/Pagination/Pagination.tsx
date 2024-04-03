@@ -26,7 +26,7 @@ export const Pagination = () => {
           fetchProducts(1);
         }}
       >
-        <IoPlayBackOutline /> Torna all'inizio
+        <IoPlayBackOutline />
       </button>
       {pages
         .slice(
@@ -50,7 +50,7 @@ export const Pagination = () => {
           fetchProducts(Math.ceil(count / 20));
         }}
       >
-        Vai alla fine <IoPlayForwardOutline />
+        <IoPlayForwardOutline />
       </button>
     </div>
   );

@@ -1,5 +1,5 @@
 interface Product {
-  _id: string
+  _id: string;
   img: string;
   price: number;
   prodName: string;
@@ -11,14 +11,14 @@ interface Product {
 
 interface ProductResponse {
   data: Product[];
-  query: string | null
+  suggestions: Product[];
+
+  query: string | null;
   prev: string | null;
   next: string | null;
-  count: number
+  count: number;
 }
 
-interface JSONQuery extends Record<string, string | boolean | null> {
-  
-}
+interface JSONQuery extends Record<string, string | boolean | null> {}
 
-interface Error { }
+interface Error {}

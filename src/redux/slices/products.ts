@@ -4,21 +4,18 @@ import { RootState } from "../store";
 import { JSONToQuery } from "../../utils/query.utils";
 import { shops } from "../../utils/shops.utils";
 interface ProductsState extends ProductResponse {
-  data: Product[];
-  query: string | null;
   page: number;
   filter: JSONQuery;
   loading: boolean;
   error: string | null;
-  prev: string | null;
-  next: string | null;
 }
 
 // Define the initial state using that type
 const initialState: ProductsState = {
   data: [],
-  query: null,
-  filter: {
+  suggestions: [],
+  query: JSON.parse(localStorage.getItem("tuopadre-query")!) || null,
+  filter: JSON.parse(localStorage.getItem("tuopadre-filter") as string) || {
     price: "true",
     store: shops.join(","),
     order: "prodName",
@@ -58,6 +55,7 @@ export const productSlice = createSlice({
   reducers: {
     setQuery: (state, action) => {
       state.query = action.payload;
+      localStorage.setItem("tuopadre-query", JSON.stringify(state.query));
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
@@ -67,6 +65,7 @@ export const productSlice = createSlice({
         ...state.filter,
         ...action.payload,
       };
+      localStorage.setItem("tuopadre-filter", JSON.stringify(state.filter));
     },
     setPage: (state, action) => {
       state.page = action.payload;
@@ -78,6 +77,7 @@ export const productSlice = createSlice({
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.data = action.payload.data;
+      state.suggestions = action.payload.suggestions
 
       state.prev = action.payload.prev;
       state.next = action.payload.next;

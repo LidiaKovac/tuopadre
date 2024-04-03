@@ -15,8 +15,8 @@
       aspect-ratio: 1 / 1;
     }
     &:is(:first-of-type, :last-of-type) {
-      max-width: 200px;
-      flex: 1 0 100px;
+      max-width: 100px;
+      flex: 1 0 50px;
     }
     @extend .glass;
     display: flex;

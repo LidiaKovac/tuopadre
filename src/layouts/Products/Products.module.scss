@@ -1,8 +1,11 @@
+@import "/src/styles/colors";
+@import "/src/styles/utils";
 .products {
   display: flex;
   min-height: calc(100vh - 100px);
   container-type: inline-size;
   position: relative;
+
   main {
     width: 100%;
     $padding-size: 5%;
@@ -22,11 +25,32 @@
     }
     .products__wrap {
       width: 100%;
+
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: flex-start;
       align-items: flex-start;
+    }
+    .suggestions__wrap {
+      background-color: map-get($status, "warning");
+      
+      padding: 20px; 
+      margin-block: 20px;
+      
+      @extend .glass;
+    }
+    .products__suggestions {
+      width: fit-content;
+
+      padding: 10px 20px;
+      margin-block: 20px;
+      border-radius: 5px;
+
+      background-color: map-get($status, "danger");
+      font-weight: bold;
+
+      cursor: pointer;
     }
   }
 }

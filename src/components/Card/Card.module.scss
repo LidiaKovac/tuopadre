@@ -47,7 +47,7 @@
     align-items: flex-start;
     h3 {
       @extend .clamp-line-2;
-      
+        text-transform: capitalize;
     }
     h4 {
       @extend .clamp-line-2;

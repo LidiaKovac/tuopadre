@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../../components/Card/Card";
 import styles from "./Products.module.scss";
 import { getProducts } from "../../redux/slices/products";
@@ -8,10 +8,11 @@ import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Pagination } from "../../components/Pagination/Pagination";
 export const Products = () => {
   const dispatch = useAppDispatch();
-  const { data: products, query, count, loading } = useAppSelector((state) => state.products);
+  const { data: products, query, count, loading, suggestions } = useAppSelector((state) => state.products);
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+  const [show, setShow] = useState(false);
   return (
     <div className={styles["products"]}>
       <Sidebar />
@@ -27,6 +28,18 @@ export const Products = () => {
               </h2>
             )}
             {products.length > 0 && <Pagination />}
+            {suggestions?.length > 0 && (
+              <div className={styles["products__suggestions"]} onClick={() => setShow((prev) => !prev)}>
+                Clicca per vedere i {suggestions.length} prodotti simili in offerta alla Basko.
+              </div>
+            )}
+            {suggestions?.length > 0 && show && (
+              <div className={`${styles["products__wrap"]} ${styles["suggestions__wrap"]}`}>
+                {suggestions.map((p) => (
+                  <Card key={p._id} product={p} />
+                ))}
+              </div>
+            )}
             <div className={styles["products__wrap"]}>
               {products.map((p) => (
                 <Card key={p._id} product={p} />

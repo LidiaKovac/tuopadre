@@ -20,7 +20,6 @@ export const JSONToQuery = (q: JSONQuery) => {
       qp.set(key, "");
     }
   }
-  console.log(qp);
-
+  // console.log(qp);
   return qp;
 };

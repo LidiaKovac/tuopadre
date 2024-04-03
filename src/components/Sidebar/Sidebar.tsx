@@ -1,6 +1,7 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Checkbox } from "../Forms/Checkbox/Checkbox";
 import styles from "./Sidebar.module.scss";
+import { FiMenu } from "react-icons/fi";
 import { getProducts, setFilter, setPage } from "../../redux/slices/products";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Button } from "../Button/Button";
@@ -9,7 +10,10 @@ import { shops } from "../../utils/shops.utils";
 export const Sidebar = () => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.products.filter);
-
+  const [show, setShow] = useState<boolean>()
+  const toggleOffCanvas = () => {
+    setShow(prev => !prev)
+  }
   const addToFilters = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = e.target;
     dispatch(setFilter({ [id]: checked }));
@@ -45,7 +49,8 @@ export const Sidebar = () => {
     dispatch(getProducts());
   };
   return (
-    <aside className={styles["sidebar"]}>
+    <>
+    <aside className={`${styles["sidebar"]} ${show ? styles["sidebar--close"] : ""}`}>
       <h2>Filtri:</h2>
       <Checkbox labelContent="Prezzi" id="price" onChange={addToFilters} checked={filters["price"] as boolean} />
       <hr />
@@ -100,5 +105,8 @@ export const Sidebar = () => {
       </div>
       <Button status="danger" content="Filtra" onClick={fetchProducts} />
     </aside>
+    <Button className={styles["button--show"]} onClick={toggleOffCanvas} content={<FiMenu/>}/> 
+      
+    </>
   );
 };

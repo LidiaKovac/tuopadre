@@ -1,13 +1,16 @@
 .products {
   display: flex;
   min-height: calc(100vh - 100px);
-
+  container-type: inline-size;
+  position: relative;
   main {
     width: 100%;
     $padding-size: 5%;
     padding-inline: $padding-size;
     padding-top: calc($padding-size / 2);
     position: relative;
+    container-type: inline-size;
+
     & > h2 {
       margin-block: 20px;
     }
@@ -24,6 +27,16 @@
       gap: 20px;
       justify-content: flex-start;
       align-items: flex-start;
+    }
+  }
+}
+
+@container (max-width:880px) {
+  .products {
+    main {
+      .products__wrap {
+        justify-content: center;
+      }
     }
   }
 }

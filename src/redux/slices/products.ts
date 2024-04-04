@@ -14,8 +14,8 @@ interface ProductsState extends ProductResponse {
 const initialState: ProductsState = {
   data: [],
   suggestions: [],
-  query: JSON.parse(localStorage.getItem("tuopadre-query")!) || null,
-  filter: JSON.parse(localStorage.getItem("tuopadre-filter") as string) || {
+  query: JSON.parse(sessionStorage.getItem("tuopadre-query")!) || null,
+  filter: JSON.parse(sessionStorage.getItem("tuopadre-filter") as string) || {
     price: "true",
     store: shops.join(","),
     order: "prodName",
@@ -55,7 +55,7 @@ export const productSlice = createSlice({
   reducers: {
     setQuery: (state, action) => {
       state.query = action.payload;
-      localStorage.setItem("tuopadre-query", JSON.stringify(state.query));
+      sessionStorage.setItem("tuopadre-query", JSON.stringify(state.query));
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
@@ -65,7 +65,7 @@ export const productSlice = createSlice({
         ...state.filter,
         ...action.payload,
       };
-      localStorage.setItem("tuopadre-filter", JSON.stringify(state.filter));
+      sessionStorage.setItem("tuopadre-filter", JSON.stringify(state.filter));
     },
     setPage: (state, action) => {
       state.page = action.payload;

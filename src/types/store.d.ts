@@ -9,6 +9,14 @@ interface Product {
   scadenza: string;
 }
 
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  role: "admin" | "user";
+}
+
 interface ProductResponse {
   data: Product[];
   suggestions: Product[];

@@ -6,13 +6,16 @@ import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Loader } from "../../components/Loader/Loader";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { Pagination } from "../../components/Pagination/Pagination";
+import { getMe } from "../../redux/slices/user";
 export const Products = () => {
   const dispatch = useAppDispatch();
   const { data: products, query, count, loading, suggestions } = useAppSelector((state) => state.products);
   useEffect(() => {
+    dispatch(getMe());
     dispatch(getProducts());
   }, []);
   const [show, setShow] = useState(false);
+  useEffect(() => {}, []);
   return (
     <div className={styles["products"]}>
       <Sidebar />

@@ -1,4 +1,4 @@
 interface InputComponent
     extends React.InputHTMLAttributes<HTMLInputElement> {
-    submitAction: MouseEventHandler<SVGElement>
+    submitAction?: MouseEventHandler<SVGElement>
 }

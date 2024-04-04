@@ -2,10 +2,12 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productReducer from "./slices/products";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import errorReducer from "./slices/errors";
+import userReducer from "./slices/user";
 
 const combined = combineReducers({
   products: productReducer,
-  errors: errorReducer
+  errors: errorReducer,
+  user: userReducer
 });
 
 export const store = configureStore({

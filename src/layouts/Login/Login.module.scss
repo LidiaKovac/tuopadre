@@ -1,0 +1,25 @@
+@import "/src/styles/utils";
+.login__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+  form {
+    width: 60%;
+    height: 50vh;
+    padding: 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    @extend .glass;
+
+    button {
+        max-width: 400px;
+        min-width: 200px;
+        width: 100%;
+    }
+  }
+}

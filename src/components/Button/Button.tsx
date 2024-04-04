@@ -10,7 +10,7 @@ export const Button: FC<ButtonComponent> = ({
 }) => {
   return (
     <button
-      className={`${styles["btn"]} ${styles[`btn--${status}`]}, ${className}`}
+      className={`${styles["btn"]} ${styles[`btn--${status}`]} ${className}`}
       type={type}
       onClick={onClick}
       disabled={disabled}

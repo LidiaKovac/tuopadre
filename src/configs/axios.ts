@@ -2,34 +2,21 @@ import axios, { AxiosError, AxiosInstance } from "axios";
 const updateHeaderInterceptor = (axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.request.use((config) => {
     config.baseURL = "http://localhost:3001/";
-    // config.headers["Authorization"] =
-    //   "Bearer " + localStorage.getItem("tumblr-token");
+    config.headers["Authorization"] = "Bearer " + localStorage.getItem("tuopadre-token");
     return config;
   });
 };
 const errorInterceptor = (axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.response.use(
     (res) => {
-      // store.dispatch({
-      //   type: "errors/resetErrors",
-      // });
       return Promise.resolve(res);
     },
     (error: AxiosError) => {
-      // store.dispatch({
-      //   type: "errors/addError",
-      //   payload: {
-      //     ...(error.response?.data as Error),
-      //     id: uniqid(),
-      //   },
-      // });
-      console.log(error);
-      // store.dispatch({
-      //   type: "errors/setLoginError",
-      //   payload: error.response?.status === 401,
-      // });
+      if ((error.response?.status as number) >= 400) {
+        location.assign("/login");
+      }
       return Promise.reject(error.response?.data);
-    }
+    },
   );
 };
 const httpClient = axios.create();

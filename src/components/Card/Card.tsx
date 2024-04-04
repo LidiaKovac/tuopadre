@@ -2,10 +2,13 @@ import { FC } from "react";
 import styles from "./Card.module.scss";
 import { Shop } from "../Shop/Shop";
 import { FaIdCard, FaPlus } from "react-icons/fa";
+import { useAppSelector } from "../../redux/store";
 interface CardProps {
   product: Product;
 }
 export const Card: FC<CardProps> = ({ product }) => {
+  const me = useAppSelector((state) => state.user.me);
+
   return (
     <div className={styles["card"]}>
       <div className={styles["card__header"]}>
@@ -26,9 +29,9 @@ export const Card: FC<CardProps> = ({ product }) => {
       </div>
       <div className={styles["card__footer"]}>
         {product.price && <div className={styles["card__price"]}>{product.price.toFixed(2)}</div>}
-        <button>
+        {me && <button>
           <FaPlus />
-        </button>
+        </button>}
       </div>
     </div>
   );

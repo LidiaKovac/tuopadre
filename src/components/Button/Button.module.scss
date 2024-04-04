@@ -35,18 +35,19 @@
       transform: none;
     }
   }
-  @each $stat, $color in $status {
-    &--#{$stat} {
-      background-color: transparentize($color, 0.8);
-
-      @if (lightness($color) < 50) {
-        color: map-get($colors, "light");
-      } @else {
-        color: darken(map-get($colors, "primary"), 30);
-      }
-    }
-  }
   @container ( max-width: 480px ) {
     font-size: 15px
   }
 }
+@each $stat, $color in $status {
+  .btn--#{$stat} {
+    background-color: $color;
+
+    @if (lightness($color) < 50) {
+      color: map-get($colors, "light");
+    } @else {
+      color: darken(map-get($colors, "primary"), 30);
+    }
+  }
+}
+

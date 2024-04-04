@@ -2,7 +2,9 @@
 .input {
   background-color: lighten(map-get($colors, "accent-light"), 10%);
   border-radius: 100px;
-  min-width: 400px;
+  max-width: 400px;
+  min-width: 200px;
+  width: 100%;
   position: relative;
   input {
     border: none;
@@ -11,10 +13,15 @@
     border-radius: inherit;
     width: 100%;
     font-size: 18px;
-
+    outline: 2px solid map-get($colors, "secondary");
+    transition: 0.2s;
     &:focus,
     &:active {
       // outline: none;
+      &::placeholder {
+        color: white;
+      }
+      background-color: map-get($status, "success");
       outline: 2px solid map-get($colors, "secondary");
     }
   }

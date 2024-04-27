@@ -112,7 +112,7 @@ export const Sidebar = () => {
         </div>
         <Button status="danger" content="Filtra" onClick={fetchProducts} />
       </aside>
-      <Button className={styles["button--show"]} onClick={toggleOffCanvas} content={<FiMenu />} />
+      <Button className={styles["button--show"]} onClick={toggleOffCanvas} status="info" content={<FiMenu />} />
     </>
   );
 };

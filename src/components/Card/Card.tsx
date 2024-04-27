@@ -12,13 +12,8 @@ export const Card: FC<CardProps> = ({ product }) => {
   return (
     <div className={styles["card"]}>
       <div className={styles["card__header"]}>
-        <img
-          className={styles["card__img"]}
-          src={product.img || "https://placehold.it/300"}
-          alt={product.prodName}
-        />
+        <img className={styles["card__img"]} src={product.img || "https://placehold.it/300"} alt={product.prodName} />
         <div className={styles["card__header-overlay"]}>
-
           <Shop name={product.store} />
           {product.needsCard && <FaIdCard />}
         </div>
@@ -29,9 +24,11 @@ export const Card: FC<CardProps> = ({ product }) => {
       </div>
       <div className={styles["card__footer"]}>
         {product.price && <div className={styles["card__price"]}>{product.price.toFixed(2)}</div>}
-        {me && <button>
-          <FaPlus />
-        </button>}
+        {me && (
+          <button>
+            <FaPlus />
+          </button>
+        )}
       </div>
     </div>
   );

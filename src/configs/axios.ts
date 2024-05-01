@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 const updateHeaderInterceptor = (axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.request.use((config) => {
-    config.baseURL = "http://192.168.1.251:3001";
+    config.baseURL = import.meta.env.VITE_ENV === "dev" ? "http://localhost:3001" : "http://192.168.1.251:3001";
     config.headers["Authorization"] = "Bearer " + localStorage.getItem("tuopadre-token");
     return config;
   });

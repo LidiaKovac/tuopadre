@@ -46,4 +46,4 @@ Beh, guarda questa bellezza! 👀
 
 Che meraviglia, vero?
 
-Se ti stai chiedendo come funzioni Tuo Padre, dai un'occhiata alla nostra repo backend! 👆
+Se ti stai chiedendo come funzioni Tuo Padre, dai un'occhiata alla nostra <a href="https://github.com/LidiaKovac/tuo-padre-be"> repo backend </a>! 👆
